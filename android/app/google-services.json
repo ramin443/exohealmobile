@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "352545899734",
+    "project_id": "exoheal-c275b",
+    "storage_bucket": "exoheal-c275b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:352545899734:android:6d170dbc6bd0f49245f577",
+        "android_client_info": {
+          "package_name": "com.exoheal.exoheal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "352545899734-e55jkq4pbqdeo2cl637tdtl5o7e889dv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAB7AysWGR_VLoEmXxVbpds6rxSEaWWHdQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "352545899734-e55jkq4pbqdeo2cl637tdtl5o7e889dv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:352545899734:android:387e00c9147350de45f577",
+        "android_client_info": {
+          "package_name": "com.exoheal.exohealandroid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "352545899734-e55jkq4pbqdeo2cl637tdtl5o7e889dv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAB7AysWGR_VLoEmXxVbpds6rxSEaWWHdQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "352545899734-e55jkq4pbqdeo2cl637tdtl5o7e889dv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
