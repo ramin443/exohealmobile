@@ -23,7 +23,7 @@ import 'basecontroller.dart';
 
 final BaseController baseController = Get.put(BaseController());
 class HomeController extends GetxController{
- // FlutterBlue flutterBlue = FlutterBlue.instance;
+  // FlutterBlue flutterBlue = FlutterBlue.instance;
   String _data = '';
   bool loading=false;
   bool _scanning = false;
@@ -74,7 +74,7 @@ class HomeController extends GetxController{
             width: screenwidth,
             height: screenwidth*0.4,
             decoration: BoxDecoration(
-              color: exohealdarkgrey
+                color: exohealdarkgrey
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -108,7 +108,7 @@ class HomeController extends GetxController{
         InkWell(
           onTap: () {
             Navigator.push(context, MaterialPageRoute(builder: (context)=>
-            HistoryPage()
+                HistoryPage()
             ));
           },
           child: Container(
@@ -185,7 +185,7 @@ class HomeController extends GetxController{
           onTap: () {
             Navigator.pop(context);
             Navigator.push(context,MaterialPageRoute(builder: (context)=>
-            FullLapExercise(exerciselist: staticexerciselist,)
+                FullLapExercise(exerciselist: staticexerciselist,)
             ));
           },
           child: Container(
@@ -325,7 +325,7 @@ class HomeController extends GetxController{
               children: [
                 Container(
                   child: Text(
-    FirebaseAuth.instance.currentUser!.displayName==null?"ExoHeal user":
+                    FirebaseAuth.instance.currentUser!.displayName==null?"ExoHeal user":
                     FirebaseAuth.instance.currentUser!.displayName.toString(),
                     style: TextStyle(
                         fontFamily: intermedium,
@@ -424,7 +424,7 @@ class HomeController extends GetxController{
         return exohealdarkgrey;
       case "exoheallightgrey":
         return exoheallightgrey;
-    default:
+      default:
         return exoheallightgrey;
     }
   }
@@ -466,9 +466,9 @@ class HomeController extends GetxController{
         GestureDetector(
           onTap: (){
             Navigator.push(context, MaterialPageRoute(builder: (context)=>
-           IndividualExercise(exerciseModel:
-           ExerciseModel("exohealgreen", "Finger Tip Exercise",
-               "Make sure you have bluetooth on your device turned on", "15 sec"),)));
+                IndividualExercise(exerciseModel:
+                ExerciseModel("exohealgreen", "Finger Tip Exercise",
+                    "Make sure you have bluetooth on your device turned on", "15 sec"),)));
           },
           child: Container(
             width: screenwidth*0.616,
@@ -489,7 +489,7 @@ class HomeController extends GetxController{
                       size: screenwidth*0.0486,
                       color: Colors.transparent,),
                   ),     Container(
-                //    margin: EdgeInsets.only(left: screenwidth*0.074),
+                    //    margin: EdgeInsets.only(left: screenwidth*0.074),
                     child: Text("Start Exercises",style: TextStyle(
                         fontFamily: intermedium,
                         color: exohealdarkmodepagebg,
@@ -620,7 +620,7 @@ class HomeController extends GetxController{
         ),
         GestureDetector(
           onTap: (){
-           /* loading=true;
+            /* loading=true;
             update();
             Future.delayed(Duration(seconds: 5),setloadingfalse);*/
             Navigator.push(context, MaterialPageRoute(builder: (context)=>MainPair()));
@@ -724,139 +724,139 @@ class HomeController extends GetxController{
           Container(
             margin: EdgeInsets.only(top: screenwidth*0.0693),
             child: ListView.builder(
-              shrinkWrap: true,
+                shrinkWrap: true,
                 scrollDirection: Axis.vertical,
                 physics: NeverScrollableScrollPhysics(),
                 itemCount: historylist.length>3?4:historylist.length,
                 itemBuilder: (context,index){
-                return Container(
-                  width: screenwidth,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Container(
-                                  margin: EdgeInsets.only(right: screenwidth*0.0293),
-                                  height: screenwidth*0.096,width: screenwidth*0.096,
-                                  decoration: BoxDecoration(
-                                    color: getcolor(historylist[index].image.toString()),
-                                    shape: BoxShape.circle
-                                  ),
-                                ),
-                                Container(
-                                  height:screenwidth*0.086,
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Container(
-                                        child: Text(
-                                          historylist[index].exercisetype.toString(),
-                                          style: TextStyle(
-                                              fontFamily: intermedium,
-                                              fontSize: screenwidth*0.032,
-                                              color:darkgrey),
-                                        ),
-                                      ),
-                                      Container(
-                                        child: Text(
-                                          "Duration: "+historylist[index].duration.toString(),
-                                          style: TextStyle(
-                                              fontFamily: intermedium,
-                                              fontSize: screenwidth*0.0293,
-                                              color:exoheallightgrey),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-
-                          Container(
-                            height:screenwidth*0.086,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                Container(
-                                  child: Text(
-                      historylist[index].date.toString()==
-                      DateFormat.yMMMMd('en_US').format(DateTime.now())?
-                                    "Today":
-                                    historylist[index].date.toString(),
-                                    style: TextStyle(
-                                        fontFamily: interregular,
-                                        fontSize: screenwidth*0.0293,
-                                        color:darkgrey),
-                                  ),
-                                ),
-                                Container(
-                                  child: Text(
-                                    historylist[index].time.toString(),
-                                    style: TextStyle(
-                                        fontFamily: interregular,
-                                        fontSize: screenwidth*0.0293,
-                                        color:darkgrey),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
-                      index==3?
-                          GestureDetector(
-                            onTap: (){
-                              Navigator.push(context, MaterialPageRoute(builder: (context)
-                              =>HistoryPage()));
-                            },
-                            child: Container(
-                              margin: EdgeInsets.only(top: screenwidth*0.032,
-                                  bottom: screenwidth*0.0506),
-                              width: screenwidth,
+                  return Container(
+                    width: screenwidth,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
                                   Container(
-                                    child:  Text(
-                                      "View more",
-                                      style: TextStyle(
-                                          fontFamily: intermedium,
-                                          fontSize: screenwidth*0.0293,
-                                          color:exohealgreen),
+                                    margin: EdgeInsets.only(right: screenwidth*0.0293),
+                                    height: screenwidth*0.096,width: screenwidth*0.096,
+                                    decoration: BoxDecoration(
+                                        color: getcolor(historylist[index].image.toString()),
+                                        shape: BoxShape.circle
                                     ),
                                   ),
                                   Container(
-                                    margin: EdgeInsets.only(left: screenwidth*0.016),
-                                    child: Icon(CupertinoIcons.arrow_right,
-                                    color: exohealgreen,
-                                    size: screenwidth*0.0373,),
+                                    height:screenwidth*0.086,
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Container(
+                                          child: Text(
+                                            historylist[index].exercisetype.toString(),
+                                            style: TextStyle(
+                                                fontFamily: intermedium,
+                                                fontSize: screenwidth*0.032,
+                                                color:darkgrey),
+                                          ),
+                                        ),
+                                        Container(
+                                          child: Text(
+                                            "Duration: "+historylist[index].duration.toString(),
+                                            style: TextStyle(
+                                                fontFamily: intermedium,
+                                                fontSize: screenwidth*0.0293,
+                                                color:exoheallightgrey),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   )
                                 ],
                               ),
                             ),
-                          ):
-                      Container(
-                        margin: EdgeInsets.only(top: screenwidth*0.04,bottom: screenwidth*0.0506),
-                        width: screenwidth,
-                        height: 1,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(20)),
-                          color: Color(0xffECEBEB)
+
+                            Container(
+                              height:screenwidth*0.086,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  Container(
+                                    child: Text(
+                                      historylist[index].date.toString()==
+                                          DateFormat.yMMMMd('en_US').format(DateTime.now())?
+                                      "Today":
+                                      historylist[index].date.toString(),
+                                      style: TextStyle(
+                                          fontFamily: interregular,
+                                          fontSize: screenwidth*0.0293,
+                                          color:darkgrey),
+                                    ),
+                                  ),
+                                  Container(
+                                    child: Text(
+                                      historylist[index].time.toString(),
+                                      style: TextStyle(
+                                          fontFamily: interregular,
+                                          fontSize: screenwidth*0.0293,
+                                          color:darkgrey),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
                         ),
-                      )
-                    ],
-                  ),
-                );
+                        index==3?
+                        GestureDetector(
+                          onTap: (){
+                            Navigator.push(context, MaterialPageRoute(builder: (context)
+                            =>HistoryPage()));
+                          },
+                          child: Container(
+                            margin: EdgeInsets.only(top: screenwidth*0.032,
+                                bottom: screenwidth*0.0506),
+                            width: screenwidth,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  child:  Text(
+                                    "View more",
+                                    style: TextStyle(
+                                        fontFamily: intermedium,
+                                        fontSize: screenwidth*0.0293,
+                                        color:exohealgreen),
+                                  ),
+                                ),
+                                Container(
+                                  margin: EdgeInsets.only(left: screenwidth*0.016),
+                                  child: Icon(CupertinoIcons.arrow_right,
+                                    color: exohealgreen,
+                                    size: screenwidth*0.0373,),
+                                )
+                              ],
+                            ),
+                          ),
+                        ):
+                        Container(
+                          margin: EdgeInsets.only(top: screenwidth*0.04,bottom: screenwidth*0.0506),
+                          width: screenwidth,
+                          height: 1,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.all(Radius.circular(20)),
+                              color: Color(0xffECEBEB)
+                          ),
+                        )
+                      ],
+                    ),
+                  );
                 }),
           )
         ],
@@ -1099,7 +1099,7 @@ class HomeController extends GetxController{
                 children: [
                   Container(
                     child: Image.asset("assets/images/darkmodeimg/streaksinfo.png",
-                    width: screenwidth*0.494,),
+                      width: screenwidth*0.444,),
                   )
                 ],
               )
@@ -1131,7 +1131,7 @@ class HomeController extends GetxController{
                     appearance: CircularSliderAppearance(
                         size: 180,
                         customColors: CustomSliderColors(
-                          shadowColor: Colors.transparent,
+                            shadowColor: Colors.transparent,
                             trackColor: Color(0xffC1C7D2).withOpacity(0),
                             progressBarColor:exoheallightgreen
                         ),
@@ -1223,14 +1223,14 @@ class HomeController extends GetxController{
                             trackWidth: 12,
                             progressBarWidth: 12
                         ),
-                      infoProperties: InfoProperties(
+                        infoProperties: InfoProperties(
                           mainLabelStyle:TextStyle(
-                            fontSize: 0
+                              fontSize: 0
                           ),
-                        topLabelStyle: TextStyle(
-                            fontSize: 0
-                        ),
-                      )
+                          topLabelStyle: TextStyle(
+                              fontSize: 0
+                          ),
+                        )
                     ),
 
                     min: 0,
@@ -1257,13 +1257,13 @@ class HomeController extends GetxController{
           Container(
             width: screenwidth,
             child: Row(mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Container(
-                child: Image.asset("assets/images/darkmodeimg/exercisehistory.png",
-                width: screenwidth*0.91,
-                ),
-              )
-            ],),
+              children: [
+                Container(
+                  child: Image.asset("assets/images/darkmodeimg/exercisehistory.png",
+                    width: screenwidth*0.91,
+                  ),
+                )
+              ],),
           )
         ],
       ),

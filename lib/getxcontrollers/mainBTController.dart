@@ -378,7 +378,7 @@ class MainBTController extends GetxController{
   void setdurationandstartCountdown(BuildContext context){
     selectedDuration=Duration(minutes: timetapped);
     int setdurationinseconds=timetapped*60;
-   // startCountdown();
+    // startCountdown();
     update();
     Navigator.pop(context);
   }
@@ -426,14 +426,14 @@ class MainBTController extends GetxController{
     FlutterBluetoothSerial.instance
         .getBondedDevices()
         .then((List<BluetoothDevice> bondedDevices) {
-        devices = bondedDevices
-            .map(
-              (device) => _DeviceWithAvailability(
-            device,
-           _DeviceAvailability.yes,
-          ),
-        )
-            .toList();
+      devices = bondedDevices
+          .map(
+            (device) => _DeviceWithAvailability(
+          device,
+          _DeviceAvailability.yes,
+        ),
+      )
+          .toList();
       update();
     });
 
@@ -460,19 +460,19 @@ class MainBTController extends GetxController{
     update();
     discoveryStreamSubscription =
         FlutterBluetoothSerial.instance.startDiscovery().listen((r) {
-            Iterator i = devices.iterator;
-            while (i.moveNext()) {
-              var device = i.current;
-              if (device.device == r.device) {
-                device.availability = _DeviceAvailability.yes;
-                device.rssi = r.rssi;
-              }
-              if(device.device.name=="ExoHeal"){
-                print("Found Exoheal here within start Discovery");
-                setfoundDeviceTrue();
-              }
+          Iterator i = devices.iterator;
+          while (i.moveNext()) {
+            var device = i.current;
+            if (device.device == r.device) {
+              device.availability = _DeviceAvailability.yes;
+              device.rssi = r.rssi;
             }
-         update();
+            if(device.device.name=="ExoHeal"){
+              print("Found Exoheal here within start Discovery");
+              setfoundDeviceTrue();
+            }
+          }
+          update();
         });
 
     discoveryStreamSubscription?.onDone(() {
@@ -576,8 +576,8 @@ class MainBTController extends GetxController{
           ? _messageBuffer.substring(
           0, _messageBuffer.length - backspacesCounter)
           : _messageBuffer;
-        isConnecting = false;
-        isDisconnecting = false;
+      isConnecting = false;
+      isDisconnecting = false;
       update();
 
       connection!.input!.listen(_onDataReceived).onDone(() {
@@ -607,18 +607,18 @@ class MainBTController extends GetxController{
 
     print("were here");
     text = text.trim();
-   // textEditingController.clear();
+    // textEditingController.clear();
 
     if (text.length > 0) {
       try {
         connection!.output.add(Uint8List.fromList(utf8.encode(text + "\r\n")));
         await connection!.output.allSent;
 
-          messages.add(_Message(clientID, text));
+        messages.add(_Message(clientID, text));
         update();
 
         Future.delayed(Duration(milliseconds: 333)).then((_) {
-        /*  listScrollController.animateTo(
+          /*  listScrollController.animateTo(
               listScrollController.position.maxScrollExtent,
               duration: Duration(milliseconds: 333),
               curve: Curves.easeOut);*/
@@ -715,9 +715,9 @@ class MainBTController extends GetxController{
             }
           }
           connectToExoheal(exohealdevice);
-         // callIsConnected();
+          // callIsConnected();
           //  isConnected=isConnected;
-         // Navigator.pop(context);
+          // Navigator.pop(context);
         }else{
           updatebtntxt();
           switchscantitle(context);
@@ -725,8 +725,8 @@ class MainBTController extends GetxController{
           searchandconnect();
         }
 
-      //  searchandconnect();
-       // delayScanStop(); //  print(unconnecteddevicecontainers);
+        //  searchandconnect();
+        // delayScanStop(); //  print(unconnecteddevicecontainers);
       },
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: screenwidth * 0.0426),
@@ -738,14 +738,14 @@ class MainBTController extends GetxController{
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-          /*  Icon(
+            /*  Icon(
               FeatherIcons.eye,
               size: screenwidth * 0.0586,
               color: Colors.white,
             ),*/
             Container(
               //   width: screenwidth * 0.429,
-           //    margin: EdgeInsets.only(left: screenwidth*0.050),
+              //    margin: EdgeInsets.only(left: screenwidth*0.050),
               child: Text(
                 btntxt,
                 textAlign: TextAlign.center,
@@ -836,16 +836,16 @@ class MainBTController extends GetxController{
     String dataString = String.fromCharCodes(buffer);
     int index = buffer.indexOf(13);
     if (~index != 0) {
-        messages.add(
-          _Message(
-            1,
-            backspacesCounter > 0
-                ? _messageBuffer.substring(
-                0, _messageBuffer.length - backspacesCounter)
-                : _messageBuffer + dataString.substring(0, index),
-          ),
-        );
-        _messageBuffer = dataString.substring(index);
+      messages.add(
+        _Message(
+          1,
+          backspacesCounter > 0
+              ? _messageBuffer.substring(
+              0, _messageBuffer.length - backspacesCounter)
+              : _messageBuffer + dataString.substring(0, index),
+        ),
+      );
+      _messageBuffer = dataString.substring(index);
       update();
     } else {
       _messageBuffer = (backspacesCounter > 0
@@ -933,8 +933,8 @@ class MainBTController extends GetxController{
                     for(var dev in devices){
                       print(dev.device.name);
                     }
-                 //   baseController.setindex(0);
-                Navigator.pop(context);
+                    //   baseController.setindex(0);
+                    Navigator.pop(context);
                   },
                   icon: Icon(
                     CupertinoIcons.xmark_circle_fill,
@@ -961,11 +961,11 @@ class MainBTController extends GetxController{
               Container(
                 margin: EdgeInsets.only(top: 16),
                 child: Text("Exoheal",
-                style: TextStyle(
-                  fontFamily: proximanovaregular,
-                  color: exoheallightgreen,
-                  fontSize: screenwidth*0.0583
-                ),),
+                  style: TextStyle(
+                      fontFamily: proximanovaregular,
+                      color: exoheallightgreen,
+                      fontSize: screenwidth*0.0583
+                  ),),
               )
             ],
           ),
@@ -994,7 +994,7 @@ class MainBTController extends GetxController{
                   ),
                   SleekCircularSlider(
                     appearance: CircularSliderAppearance(
-                      size: 180,
+                        size: 180,
                         customColors: CustomSliderColors(
                             trackColor: Color(0xffC1C7D2).withOpacity(0),
                             progressBarColor:exoheallightgreen
@@ -1053,8 +1053,8 @@ class MainBTController extends GetxController{
                   Container(
                     width: 60,height: 60,
                     decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(width: 12,color: Color(0xffC1C7D2).withOpacity(0.23))
+                        shape: BoxShape.circle,
+                        border: Border.all(width: 12,color: Color(0xffC1C7D2).withOpacity(0.23))
                     ),
                   ),
                   SleekCircularSlider(
@@ -1169,22 +1169,22 @@ class MainBTController extends GetxController{
   Widget recentsessionslist(BuildContext context){
     double screenwidth=MediaQuery.sizeOf(context).width;
     return
-          Column(
-            children: [
-              individualtopRow(context: context, title:  "Recent sessions", tapsection: "View All"),
-              Container(
-                height: screenwidth*0.315,
-                child: ListView.builder(
-                  physics: BouncingScrollPhysics(),
-                  scrollDirection: Axis.horizontal,
-                    shrinkWrap: true,
-                    itemCount: exercises.length,
-                    itemBuilder: (context,index){
+      Column(
+        children: [
+          individualtopRow(context: context, title:  "Recent sessions", tapsection: "View All"),
+          Container(
+            height: screenwidth*0.315,
+            child: ListView.builder(
+                physics: BouncingScrollPhysics(),
+                scrollDirection: Axis.horizontal,
+                shrinkWrap: true,
+                itemCount: exercises.length,
+                itemBuilder: (context,index){
                   return individualExercise(context, exercises[index],index);
                 }),
-              ),
-            ],
-          );
+          ),
+        ],
+      );
   }
   Widget individualExercise(BuildContext context,ExerciseModel exerciseModel,int index){
     double screenwidth=MediaQuery.sizeOf(context).width;
@@ -1197,10 +1197,10 @@ class MainBTController extends GetxController{
         height: screenwidth*0.315,
         margin: EdgeInsets.only(right: screenwidth*0.024,left: index==0? screenwidth*0.044:0,),
         padding: EdgeInsets.only(left: screenwidth*0.0346,top:  screenwidth*0.0346,
-        bottom:  screenwidth*0.0346),
+            bottom:  screenwidth*0.0346),
         decoration: BoxDecoration(
-          color: exohealanotherbggrey,
-          borderRadius: BorderRadius.all(Radius.circular(6))
+            color: exohealanotherbggrey,
+            borderRadius: BorderRadius.all(Radius.circular(6))
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -1224,7 +1224,7 @@ class MainBTController extends GetxController{
                 Container(
                   margin: EdgeInsets.only(top: screenwidth*0.0183),
                   child: Text(
-                   "Make sure you have bluetooth on your device turned on",
+                    "Make sure you have bluetooth on your device turned on",
                     textAlign: TextAlign.left,
                     maxLines: 2,
                     style: TextStyle(
@@ -1240,8 +1240,8 @@ class MainBTController extends GetxController{
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Icon(FeatherIcons.clock,
-                size: 20,
-                    color: Colors.white,),
+                  size: 20,
+                  color: Colors.white,),
                 Container(
                   margin: EdgeInsets.only(left: screenwidth*0.0183),
                   child: Text(
@@ -1271,12 +1271,12 @@ class MainBTController extends GetxController{
         children: [
           AnimatedContainer(
             width: screenwidth*0.685,
-              height: screenwidth*0.13,
-              duration: Duration(milliseconds: 300), 
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(28)),
-                color: exohealanotherbggrey,
-              ),
+            height: screenwidth*0.13,
+            duration: Duration(milliseconds: 300),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(28)),
+              color: exohealanotherbggrey,
+            ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

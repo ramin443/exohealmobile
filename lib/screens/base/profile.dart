@@ -49,7 +49,7 @@ class Profile extends StatelessWidget {
                   _key.currentState!.openDrawer();
 //                  profilecontroller.putprofiledatablob();
                 },
-                icon: Icon(
+                icon: const Icon(
                   FeatherIcons.menu,
                   size: 20,
                   color: Colors.white70,

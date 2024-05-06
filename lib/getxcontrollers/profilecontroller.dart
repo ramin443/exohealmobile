@@ -652,15 +652,9 @@ putjson(){
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.transparent, // Set the background color here
-                      // You can also customize other button properties like text color, elevation, etc.
-                      // For example:
-                      onPrimary: Colors.transparent, // Text color when the button is pressed
-                      elevation: 0, // Elevation of the button
-                    ),
-                    onPressed: (){
+                GestureDetector(
+
+                    onTap: (){
                       setinfoTabindex(0);
                     },
                     child: Container(
@@ -677,15 +671,9 @@ putjson(){
                             fontSize: screenwidth*0.045),
                       ),
                     )),
-                ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      primary: Colors.transparent, // Set the background color here
-                      // You can also customize other button properties like text color, elevation, etc.
-                      // For example:
-                      onPrimary: Colors.transparent, // Text color when the button is pressed
-                      elevation: 0, // Elevation of the button
-                    ),
-                    onPressed: (){
+                GestureDetector(
+
+                    onTap: (){
                       setinfoTabindex(1);
                     },
                     child: Container(

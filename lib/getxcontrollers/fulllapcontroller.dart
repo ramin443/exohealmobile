@@ -182,7 +182,7 @@ class FullLapController extends GetxController {
         var controller = StateMachineController.fromArtboard(artboard, 'Imagine final');
         if (controller != null) {
           artboard.addController(controller);
-       //   isrunning = controller.findInput('Running');
+          //   isrunning = controller.findInput('Running');
 
         }
         riveArtboard = artboard;
@@ -192,11 +192,11 @@ class FullLapController extends GetxController {
     );
   }
   void setmirrortherapytrue() {
-  //  isrunning!.value=true;
+    //  isrunning!.value=true;
     update();
   }
   void setmirrortherapyfalse() {
-   // isrunning!.value=false;
+    // isrunning!.value=false;
     update();
   }
 
@@ -415,81 +415,81 @@ class FullLapController extends GetxController {
   Widget timerprogressindicator(BuildContext context){
     double screenwidth = MediaQuery.of(context).size.width;
     return Container(
-      margin: EdgeInsets.only(top: screenwidth * 0.06,
-      left: screenwidth*0.112,right: screenwidth*0.112),
-      child: ProgressBar(
-        timeLabelTextStyle: TextStyle(
-          color: Color(0xffA8A8A8),
-          fontSize: screenwidth*0.0306,
-          fontFamily: intermedium
-        ),
-        barHeight: 6,
-        barCapShape: BarCapShape.round,
-        thumbColor: exohealgreen,
-        thumbCanPaintOutsideBar: false,
-        thumbRadius: 0,
-        timeLabelPadding: 12,
-        timeLabelLocation: TimeLabelLocation.below,
-        total: Duration(seconds: 13),
-        progress: duration==Duration(seconds: 0)?
-        duration:
-        (countdownDuration-duration),
-        baseBarColor: Color(0xffEAEAEA),
-        progressBarColor: exohealgreen,
-      )
+        margin: EdgeInsets.only(top: screenwidth * 0.06,
+            left: screenwidth*0.112,right: screenwidth*0.112),
+        child: ProgressBar(
+          timeLabelTextStyle: TextStyle(
+              color: Color(0xffA8A8A8),
+              fontSize: screenwidth*0.0306,
+              fontFamily: intermedium
+          ),
+          barHeight: 6,
+          barCapShape: BarCapShape.round,
+          thumbColor: exohealgreen,
+          thumbCanPaintOutsideBar: false,
+          thumbRadius: 0,
+          timeLabelPadding: 12,
+          timeLabelLocation: TimeLabelLocation.below,
+          total: Duration(seconds: 13),
+          progress: duration==Duration(seconds: 0)?
+          duration:
+          (countdownDuration-duration),
+          baseBarColor: Color(0xffEAEAEA),
+          progressBarColor: exohealgreen,
+        )
     );
   }
   Widget timerslider(BuildContext context) {
     double screenwidth = MediaQuery.of(context).size.width;
     return GetBuilder<MainBTController>(
-      init: MainBTController(),
-      builder: (mainbtcontroller) {
-        return Container(
-          margin: EdgeInsets.only(top: screenwidth * 0.08),
-          child: SleekCircularSlider(
-              min: 0,
-              max: mainbtcontroller.selectedDuration.inSeconds.toDouble(),
-              initialValue:mainbtcontroller.remainingSeconds==0?
-              mainbtcontroller.selectedDuration.inSeconds.toDouble():
-              mainbtcontroller.remainingSeconds.toDouble(),
-              appearance: CircularSliderAppearance(
+        init: MainBTController(),
+        builder: (mainbtcontroller) {
+          return Container(
+            margin: EdgeInsets.only(top: screenwidth * 0.08),
+            child: SleekCircularSlider(
+                min: 0,
+                max: mainbtcontroller.selectedDuration.inSeconds.toDouble(),
+                initialValue:mainbtcontroller.remainingSeconds==0?
+                mainbtcontroller.selectedDuration.inSeconds.toDouble():
+                mainbtcontroller.remainingSeconds.toDouble(),
+                appearance: CircularSliderAppearance(
                   //      size: screenWidth*screenHeight*0.0005347,
-                  size: screenwidth * 0.72,
-                  //size: 190,
-                  animationEnabled: true,
-                  spinnerMode: debugInstrumentationEnabled,
-                  customWidths: CustomSliderWidths(
-                      handlerSize: 0, trackWidth: 6, progressBarWidth: 6),
-                  angleRange: 360,
-                  startAngle: 135,
-                  infoProperties: InfoProperties(
-                      topLabelText:
-                      /*twoDigits((mainBTController.remainingSeconds*60).remainder(60)) +
+                    size: screenwidth * 0.72,
+                    //size: 190,
+                    animationEnabled: true,
+                    spinnerMode: debugInstrumentationEnabled,
+                    customWidths: CustomSliderWidths(
+                        handlerSize: 0, trackWidth: 6, progressBarWidth: 6),
+                    angleRange: 360,
+                    startAngle: 135,
+                    infoProperties: InfoProperties(
+                        topLabelText:
+                        /*twoDigits((mainBTController.remainingSeconds*60).remainder(60)) +
                           ":" +
                           twoDigits(mainBTController.remainingSeconds.remainder(60)),*/
-                      mainbtcontroller.remainingSeconds==0
-                          ?formatDurationtoMin(Duration(seconds: mainbtcontroller.selectedDuration.inSeconds)):
-                      formatDurationtoMin(Duration(seconds: mainbtcontroller.remainingSeconds))
-                      ,
-                      topLabelStyle: TextStyle(
-                          fontFamily: interregular,
-                          color: Colors.white,
-                          fontSize: screenwidth * 0.106),
-                      mainLabelStyle: TextStyle(
-                          fontFamily: proximanovaregular,
-                          color: Colors.white,
-                          fontSize: 0)),
-                  customColors: CustomSliderColors(
-                      trackColor: exohealanotherbggrey,
-                      hideShadow: true,
-                      progressBarColors: [
-                        exohealgreen,
-                        exoheallightgreen,
+                        mainbtcontroller.remainingSeconds==0
+                            ?formatDurationtoMin(Duration(seconds: mainbtcontroller.selectedDuration.inSeconds)):
+                        formatDurationtoMin(Duration(seconds: mainbtcontroller.remainingSeconds))
+                        ,
+                        topLabelStyle: TextStyle(
+                            fontFamily: interregular,
+                            color: Colors.white,
+                            fontSize: screenwidth * 0.106),
+                        mainLabelStyle: TextStyle(
+                            fontFamily: proximanovaregular,
+                            color: Colors.white,
+                            fontSize: 0)),
+                    customColors: CustomSliderColors(
+                        trackColor: exohealanotherbggrey,
+                        hideShadow: true,
+                        progressBarColors: [
+                          exohealgreen,
+                          exoheallightgreen,
 // Color(0xff00D4BE),
 // Color(0xff0017A9)
-                      ]))),
-        );
-      }
+                        ]))),
+          );
+        }
     );
   }
   String formatDurationtoMin(Duration duration) {
@@ -506,7 +506,7 @@ class FullLapController extends GetxController {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-       /*   Container(
+          /*   Container(
             child: Text(
               exerciseModel.exercisetype.toString(),
               style: TextStyle(
@@ -588,19 +588,19 @@ class FullLapController extends GetxController {
           showmessagebox
               ? messagebox(context)
               : Container(
-                  margin: EdgeInsets.only(
-                    top: screenwidth * 0.032,
-                  ),
-                  child: Text(
-                    "Make sure the bluetooth on your device\n"
-                    "remains turned on during the exercise",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        fontFamily: intermedium,
-                        fontSize: screenwidth * 0.0266,
-                        color: Color(0xff989898)),
-                  ),
-                ),
+            margin: EdgeInsets.only(
+              top: screenwidth * 0.032,
+            ),
+            child: Text(
+              "Make sure the bluetooth on your device\n"
+                  "remains turned on during the exercise",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  fontFamily: intermedium,
+                  fontSize: screenwidth * 0.0266,
+                  color: Color(0xff989898)),
+            ),
+          ),
           GestureDetector(
             onTap: () {
               loading = true;
@@ -673,7 +673,7 @@ class FullLapController extends GetxController {
             ),
             child: Text(
               "Make sure the bluetooth on your device\n"
-              "remains turned on during the exercise",
+                  "remains turned on during the exercise",
               textAlign: TextAlign.center,
               style: TextStyle(
                   fontFamily: intermedium,
@@ -697,7 +697,7 @@ class FullLapController extends GetxController {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-       /*   Container(
+          /*   Container(
             margin: EdgeInsets.only(
             ),
             child: Text(
@@ -711,10 +711,10 @@ class FullLapController extends GetxController {
             ),
           ), */
           timerslider(context),
-      //    timerprogressindicator(context),
+          //    timerprogressindicator(context),
           timercontrolbuttons(context,exerciseModel),
-     //    sensorygraph(context),
-      /*    GestureDetector(
+          //    sensorygraph(context),
+          /*    GestureDetector(
             onTap: () {
               if (currentexercise == 3) {
                 stopTimer();
@@ -909,7 +909,7 @@ class FullLapController extends GetxController {
     update();
   }
   void shutgraph()async{
-   stopTimer();
+    stopTimer();
     untoggle();
     update();
   }
@@ -920,106 +920,106 @@ class FullLapController extends GetxController {
 
   Widget timercontrolbuttons(BuildContext context,ExerciseModel exerciseModel) {
     double screenwidth = MediaQuery.of(context).size.width;
-   // final isRunning = timer == null ? false : timer!.isActive;
+    // final isRunning = timer == null ? false : timer!.isActive;
     final isCompleted = duration.inSeconds == 0;
     return GetBuilder<MainBTController>(
-      init: MainBTController(),
-      builder: (mainbtcontroller) {
-        return Container(
-          margin: EdgeInsets.only(
+        init: MainBTController(),
+        builder: (mainbtcontroller) {
+          return Container(
+            margin: EdgeInsets.only(
               top: screenwidth*0.1053,
-             ),
-          width: screenwidth,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              GestureDetector(
-                onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context)
-                    =>TimerSelectionPage()));
-                },
-                child: Container(
-                  margin: EdgeInsets.only(right: screenwidth * 0.12,
-                  ),
-                  height: screenwidth * 0.171,
-                  width: screenwidth * 0.171,
-                  decoration: BoxDecoration(
-                      color: exoheallightgreen, shape: BoxShape.circle),
-                  child: Icon(
-                   FeatherIcons.clock,
-                    size: screenwidth * 0.063,
-                    color: Colors.white,
+            ),
+            width: screenwidth,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context)
+                        =>TimerSelectionPage()));
+                  },
+                  child: Container(
+                    margin: EdgeInsets.only(right: screenwidth * 0.12,
+                    ),
+                    height: screenwidth * 0.171,
+                    width: screenwidth * 0.171,
+                    decoration: BoxDecoration(
+                        color: exoheallightgreen, shape: BoxShape.circle),
+                    child: Icon(
+                      FeatherIcons.clock,
+                      size: screenwidth * 0.063,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
-              ),
-              mainbtcontroller.remainingSeconds!=0
-                  ? GestureDetector(
-                      onTap: () {
-                        if (mainbtcontroller.remainingSeconds!=0) {
+                mainbtcontroller.remainingSeconds!=0
+                    ? GestureDetector(
+                  onTap: () {
+                    if (mainbtcontroller.remainingSeconds!=0) {
                       //    setmirrortherapyfalse();
-                          mainbtcontroller.stopCountdown();
+                      mainbtcontroller.stopCountdown();
                       //    isRunning=false;
 
-                        } else {}
-                      },
-                      child: Container(
-                        margin: EdgeInsets.only(right: screenwidth * 0.12,
-                        ),
-                        height: screenwidth * 0.171,
-                        width: screenwidth * 0.171,
-                        decoration: BoxDecoration(
-                            color: exohealdarkgrey, shape: BoxShape.circle),
-                        child: Icon(
-                          CupertinoIcons.xmark,
-                          size: screenwidth * 0.063,
-                          color: Colors.white,
-                        ),
-                      ),
-                    )
-                  : GestureDetector(
-                      onTap: () {
-                        String msg=getStringforExercise(exerciseModel.exercisetype!);
-                        mainbtcontroller.startCountdown();
-                        mainbtcontroller.sendMessage("b");
-                       // timerstarts(context);
-                      },
-                      child: Container(
-                        margin: EdgeInsets.only(right: screenwidth * 0.12),
-                        padding: EdgeInsets.only(left: 3),
-                        height: screenwidth * 0.171,
-                        width: screenwidth * 0.171,
-                        decoration: BoxDecoration(
-                            color: exohealdarkgrey, shape: BoxShape.circle),
-                        child: Icon(
-                          CupertinoIcons.play_fill,
-                          size: screenwidth * 0.063,
-                          color: Colors.white,
-                        ),
-                      ),
+                    } else {}
+                  },
+                  child: Container(
+                    margin: EdgeInsets.only(right: screenwidth * 0.12,
                     ),
-              GestureDetector(
-                onTap: () {
-                  mainbtcontroller.resetTimer();
-//              setmirrortherapyfalse()
-
-                },
-                child: Container(
-                  height: screenwidth * 0.171,
-                  width: screenwidth * 0.171,
-                  decoration:
-                      BoxDecoration(color: exohealdarkgrey, shape: BoxShape.circle),
-                  child: Icon(
-                    FeatherIcons.rotateCw,
-                    size: screenwidth * 0.063,
-                    color: Colors.white,
+                    height: screenwidth * 0.171,
+                    width: screenwidth * 0.171,
+                    decoration: BoxDecoration(
+                        color: exohealdarkgrey, shape: BoxShape.circle),
+                    child: Icon(
+                      CupertinoIcons.xmark,
+                      size: screenwidth * 0.063,
+                      color: Colors.white,
+                    ),
+                  ),
+                )
+                    : GestureDetector(
+                  onTap: () {
+                    String msg=getStringforExercise(exerciseModel.exercisetype!);
+                    mainbtcontroller.startCountdown();
+                    mainbtcontroller.sendMessage("b");
+                    // timerstarts(context);
+                  },
+                  child: Container(
+                    margin: EdgeInsets.only(right: screenwidth * 0.12),
+                    padding: EdgeInsets.only(left: 3),
+                    height: screenwidth * 0.171,
+                    width: screenwidth * 0.171,
+                    decoration: BoxDecoration(
+                        color: exohealdarkgrey, shape: BoxShape.circle),
+                    child: Icon(
+                      CupertinoIcons.play_fill,
+                      size: screenwidth * 0.063,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
-              ),
-            ],
-          ),
-        );
-      }
+                GestureDetector(
+                  onTap: () {
+                    mainbtcontroller.resetTimer();
+//              setmirrortherapyfalse()
+
+                  },
+                  child: Container(
+                    height: screenwidth * 0.171,
+                    width: screenwidth * 0.171,
+                    decoration:
+                    BoxDecoration(color: exohealdarkgrey, shape: BoxShape.circle),
+                    child: Icon(
+                      FeatherIcons.rotateCw,
+                      size: screenwidth * 0.063,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          );
+        }
     );
   }
 
@@ -1271,68 +1271,68 @@ class FullLapController extends GetxController {
   Widget sendingtodoctor(BuildContext context){
     double screenwidth = MediaQuery.of(context).size.width;
     return   GestureDetector(
-    onTap: () {},
-    child: Container(
-      width: screenwidth * 0.646,
-      padding: EdgeInsets.only(
-          top: screenwidth * 0.0203,
-          bottom: screenwidth * 0.0203,
-          //    left: screenwidth*0.0373,
-          right: screenwidth * 0.0373),
-      decoration: BoxDecoration(
-          color: exohealgreen,
-          borderRadius: BorderRadius.all(Radius.circular(6))),
-      child: Center(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Container(
+      onTap: () {},
+      child: Container(
+        width: screenwidth * 0.646,
+        padding: EdgeInsets.only(
+            top: screenwidth * 0.0203,
+            bottom: screenwidth * 0.0203,
+            //    left: screenwidth*0.0373,
+            right: screenwidth * 0.0373),
+        decoration: BoxDecoration(
+            color: exohealgreen,
+            borderRadius: BorderRadius.all(Radius.circular(6))),
+        child: Center(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
 //                    margin: EdgeInsets.only(left: screenwidth*0.048),
-              child: Icon(
-                CupertinoIcons.arrow_right,
-                size: screenwidth * 0.0186,
-                color: Colors.transparent,
+                child: Icon(
+                  CupertinoIcons.arrow_right,
+                  size: screenwidth * 0.0186,
+                  color: Colors.transparent,
+                ),
               ),
-            ),
-            Container(
-              margin: EdgeInsets.only(left: screenwidth * 0.074),
-              child: Text(
-                docreportstatus==0?
-                    "Send report to doctor":
-                docreportstatus==1?
-                "Sending report to doctor":
-                docreportstatus==2?
-                "Report sent to doctor":"Send report to doctor",
-                style: TextStyle(
-                    fontFamily: intermedium,
-                    color: Colors.white,
-                    fontSize: screenwidth * 0.032),
+              Container(
+                margin: EdgeInsets.only(left: screenwidth * 0.074),
+                child: Text(
+                  docreportstatus==0?
+                  "Send report to doctor":
+                  docreportstatus==1?
+                  "Sending report to doctor":
+                  docreportstatus==2?
+                  "Report sent to doctor":"Send report to doctor",
+                  style: TextStyle(
+                      fontFamily: intermedium,
+                      color: Colors.white,
+                      fontSize: screenwidth * 0.032),
+                ),
               ),
-            ),
-            docreportstatus==2?
-            Container(
-              margin: EdgeInsets.only(left: screenwidth * 0.048),
-              child: Icon(FeatherIcons.checkCircle,
-                size: 18,
-                color: Colors.white,
+              docreportstatus==2?
+              Container(
+                margin: EdgeInsets.only(left: screenwidth * 0.048),
+                child: Icon(FeatherIcons.checkCircle,
+                  size: 18,
+                  color: Colors.white,
+                ),
+              ):
+              Container(
+                margin: EdgeInsets.only(left: screenwidth * 0.048),
+                width: screenwidth * 0.0486,
+                height: screenwidth * 0.0486,
+                child:
+                CircularProgressIndicator(
+                  strokeWidth: 1,
+                  backgroundColor: Colors.white24,
+                  color: Colors.white,
+                ),
               ),
-            ):
-            Container(
-              margin: EdgeInsets.only(left: screenwidth * 0.048),
-              width: screenwidth * 0.0486,
-              height: screenwidth * 0.0486,
-              child:
-              CircularProgressIndicator(
-                strokeWidth: 1,
-                backgroundColor: Colors.white24,
-                color: Colors.white,
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
-    ),
-  );
+    );
   }
   Widget exercisedone(BuildContext context) {
     double screenwidth = MediaQuery.of(context).size.width;
@@ -1397,7 +1397,7 @@ class FullLapController extends GetxController {
             margin: EdgeInsets.only(top: screenwidth * 0.02),
             child: Text(
               "A copy of the report will be sent to the doctor and will be\n"
-              "logged on to your progress report.",
+                  "logged on to your progress report.",
               textAlign: TextAlign.center,
               style: TextStyle(
                   fontFamily: interregular,
@@ -1408,7 +1408,7 @@ class FullLapController extends GetxController {
           Container(
             margin: EdgeInsets.only(
                 top: screenwidth * 0.016, bottom: screenwidth * 0.016,
-            left: screenwidth*0.066,right: screenwidth*0.066
+                left: screenwidth*0.066,right: screenwidth*0.066
             ),
             width: screenwidth,
             child: Row(
@@ -1444,7 +1444,7 @@ class FullLapController extends GetxController {
             ),
           ),
           fingergraph(context),
-  /*        Container(
+          /*        Container(
             margin: EdgeInsets.only(
                 top: screenwidth * 0.016, bottom: screenwidth * 0.016,
                 left: screenwidth*0.066,right: screenwidth*0.066
@@ -1566,25 +1566,25 @@ class FullLapController extends GetxController {
   }
   Widget mirrortherapyanim(BuildContext context){
     return Center(
-        child: riveArtboard == null
-            ? const SizedBox()
-            : Container(
-          width: 312,
-          height: 250,
-          decoration: BoxDecoration(
-              border: Border.all(
-                  color: Colors.white12, width: 10)),
-          child: Rive(
-              alignment: Alignment.center,
-              artboard: riveArtboard!),
-        ),
-      );
+      child: riveArtboard == null
+          ? const SizedBox()
+          : Container(
+        width: 312,
+        height: 250,
+        decoration: BoxDecoration(
+            border: Border.all(
+                color: Colors.white12, width: 10)),
+        child: Rive(
+            alignment: Alignment.center,
+            artboard: riveArtboard!),
+      ),
+    );
   }
   Widget showindivhand(BuildContext context){
     double screenwidth = MediaQuery.of(context).size.width;
     return Container(
       margin: EdgeInsets.only(top: screenwidth*0.0906,
-      bottom: screenwidth*0.0666),
+          bottom: screenwidth*0.0666),
       width: screenwidth,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -1612,39 +1612,39 @@ class FullLapController extends GetxController {
             child: RichText(
               textAlign: TextAlign.center,
               text: TextSpan(
-                style: TextStyle(
-                  fontFamily: intermedium,
-                  color: darkgrey,
-                  fontSize: screenwidth*0.0293
-                ),
-                children: [
-                  TextSpan(
-                    text: "Mirror Therapy Completed on\n"
+                  style: TextStyle(
+                      fontFamily: intermedium,
+                      color: darkgrey,
+                      fontSize: screenwidth*0.0293
                   ),
-                  TextSpan(
+                  children: [
+                    TextSpan(
+                        text: "Mirror Therapy Completed on\n"
+                    ),
+                    TextSpan(
                       text: DateFormat.yMMMMd('en_US').format(DateTime.now()),
-                    style:TextStyle(
-                      fontFamily: intersemibold,
-                      color: exohealgreen,
-                      fontSize: screenwidth*0.0293
-                  ),
-                  ),
-                  TextSpan(
-                    text: " at ", style:TextStyle(
-                      fontFamily: intersemibold,
-                      color: exohealgreen,
-                      fontSize: screenwidth*0.0293
-                  ),
-                  ),
-                  TextSpan(
-                    text: DateFormat.jm('en_US').format(DateTime.now())+".",
-                    style:TextStyle(
+                      style:TextStyle(
+                          fontFamily: intersemibold,
+                          color: exohealgreen,
+                          fontSize: screenwidth*0.0293
+                      ),
+                    ),
+                    TextSpan(
+                      text: " at ", style:TextStyle(
                         fontFamily: intersemibold,
                         color: exohealgreen,
                         fontSize: screenwidth*0.0293
                     ),
-                  ),
-                ]
+                    ),
+                    TextSpan(
+                      text: DateFormat.jm('en_US').format(DateTime.now())+".",
+                      style:TextStyle(
+                          fontFamily: intersemibold,
+                          color: exohealgreen,
+                          fontSize: screenwidth*0.0293
+                      ),
+                    ),
+                  ]
               ),
             ),
           )
@@ -1673,10 +1673,10 @@ class FullLapController extends GetxController {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-       // mirrortherapyanim(context),
+        // mirrortherapyanim(context),
         timerrunningcolumn(context,exerciseModel),
 
-     //   exerciserunning(context),
+        //   exerciserunning(context),
       ],
     );
   }
@@ -1685,7 +1685,7 @@ class FullLapController extends GetxController {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-       showindivhandwithsensations(context),
+        showindivhandwithsensations(context),
         exercisedone(context),
       ],
     );
