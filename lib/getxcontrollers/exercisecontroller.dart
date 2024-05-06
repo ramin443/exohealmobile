@@ -745,7 +745,7 @@ class ExerciseController extends GetxController{
 
                     ),),
                 ),
-                getprofilerow(context),
+                Expanded(child: getprofilerow(context)),
               ],
             ),
           ),

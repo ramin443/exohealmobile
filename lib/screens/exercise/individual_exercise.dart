@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:exohealandroid/constants/color_constants.dart';
 import 'package:exohealandroid/getxcontrollers/mainBTController.dart';
 import 'package:flutter/cupertino.dart';
@@ -35,10 +37,10 @@ class IndividualExercise extends StatelessWidget {
             init: FullLapController(),
             builder: (fulllapcontroller) {
               return Scaffold(
-                backgroundColor: exohealdarkmodepagebg,
+                backgroundColor: Colors.white,
                 appBar: AppBar(
 
-                  backgroundColor: exohealdarkmodepagebg,
+                  backgroundColor: Colors.white,
                   elevation: 0,
                   actions: [
                     IconButton(
@@ -50,10 +52,10 @@ class IndividualExercise extends StatelessWidget {
                           //   homecontroller.tryazure();
                           // homecontroller.scanbluetoothdevices();
                         },
-                        icon: Icon(
+                        icon: const Icon(
                           CupertinoIcons.command,
                           size: 24,
-                          color: Colors.white,
+                          color: Colors.black54,
                         ))
                   ],
                   leading: IconButton(
@@ -63,10 +65,10 @@ class IndividualExercise extends StatelessWidget {
                         fulllapcontroller.settimerfalse();
                         Navigator.pop(context);
                       },
-                      icon: Icon(
+                      icon: const Icon(
                         CupertinoIcons.arrow_left,
                         size: 20,
-                        color: Colors.white70,
+                        color: Colors.black54,
                       )),
                   centerTitle: true,
                   title:
@@ -79,7 +81,7 @@ class IndividualExercise extends StatelessWidget {
                           style: TextStyle(
                               fontFamily: intersemibold,
                               fontSize: screenwidth * 0.042,
-                              color: Colors.white),
+                              color: Colors.black87),
                         ),
                       ),
                       Container(
@@ -119,10 +121,14 @@ class IndividualExercise extends StatelessWidget {
 
                         fulllapcontroller.exercisedetail(context, exerciseModel!),
 
+                        fulllapcontroller.mirrortherapyanim(context),
+                        fulllapcontroller.timerprogressindicator(context),
+                        fulllapcontroller.timercontrolbuttons(context,exerciseModel!),
 
-                        fulllapcontroller.istimercomplete
+//                        fulllapcontroller.exercisenotstartedstate(context,exerciseModel!),
+                      /*  fulllapcontroller.istimercomplete
                             ? fulllapcontroller.exercisecompletedstate(context)
-                            : fulllapcontroller.exerciserunningstate(context, exerciseModel!),
+                            : fulllapcontroller.exerciserunningstate(context, exerciseModel!),*/
                         //  fulllapcontroller.exerciserunning(context),
                         /*           fulllapcontroller.loading?
                         fulllapcontroller.connectingcolumn(context):

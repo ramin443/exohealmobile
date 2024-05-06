@@ -9,7 +9,7 @@ import 'package:simple_animations/animation_builder/loop_animation_builder.dart'
 import '../../constants/fontconstants.dart';
 import '../../constants/image_constants.dart';
 class PairDevicePage extends StatelessWidget {
-   PairDevicePage({Key? key}) : super(key: key);
+  PairDevicePage({Key? key}) : super(key: key);
   MainBTController mainBTController = Get.put(MainBTController());
 
   @override
@@ -75,7 +75,7 @@ class PairDevicePage extends StatelessWidget {
                             duration: Duration(milliseconds: 750),
                             child: Container(
                               child: Center(
-                               /* child: AnimatedSwitcher(
+                                /* child: AnimatedSwitcher(
                                   duration: Duration(milliseconds: 750),
                                   child: value > 3
                                       ? SvgPicture.asset(
@@ -196,11 +196,11 @@ class PairDevicePage extends StatelessWidget {
                   :
               SizedBox(height: 0,),*/
                   mainbtcontroller.getactivescanbutton(context),
-           //   mainbtcontroller.testbuttonrow(context)
-              //    mainbtcontroller.progresshistoryslider(context),
-           //       mainbtcontroller.profileTabs(context),
-          //        mainbtcontroller.recentsessionslist(context),
-            //      mainbtcontroller.streakSection(context),
+                  //   mainbtcontroller.testbuttonrow(context)
+                  //    mainbtcontroller.progresshistoryslider(context),
+                  //       mainbtcontroller.profileTabs(context),
+                  //        mainbtcontroller.recentsessionslist(context),
+                  //      mainbtcontroller.streakSection(context),
                 ],
               ),
             ),

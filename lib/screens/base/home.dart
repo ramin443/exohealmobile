@@ -38,20 +38,20 @@ class Home extends StatelessWidget {
                     backgroundColor: exohealdarkmodepagebg,
                     elevation: 0,
                     actions: [
-                           IconButton(
-                    onPressed: () {
-                      print(mainbtcontroller.isConnected);
-                      mainbtcontroller.connectManuallywithAddress(context);
+                      IconButton(
+                          onPressed: () {
+                            print(mainbtcontroller.isConnected);
+                            mainbtcontroller.connectManuallywithAddress(context);
 //                      Connect manually here
-                      //homecontroller.listendevices();
-                      //   homecontroller.tryazure();
-                      // homecontroller.scanbluetoothdevices();
-                    },
-                    icon: Icon(
-                      CupertinoIcons.command,
-                      size: 24,
-                      color: Colors.white,
-                    ))
+                            //homecontroller.listendevices();
+                            //   homecontroller.tryazure();
+                            // homecontroller.scanbluetoothdevices();
+                          },
+                          icon: Icon(
+                            CupertinoIcons.command,
+                            size: 24,
+                            color: Colors.white,
+                          ))
                     ],
                     leading: IconButton(
                         onPressed: () {
@@ -90,8 +90,8 @@ class Home extends StatelessWidget {
                           homecontroller.showmessagebox
                               ? homecontroller.messagebox(context)
                               : SizedBox(
-                                  height: 0,
-                                ),
+                            height: 0,
+                          ),
                           Container(
                             width: screenwidth,
                             margin: EdgeInsets.only(top: screenwidth * 0.0186),
@@ -103,7 +103,7 @@ class Home extends StatelessWidget {
                                       left: screenwidth * 0.074),
                                   child: Text(
                                     "Make sure you have bluetooth\n"
-                                    "on your device turned on",
+                                        "on your device turned on",
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         fontFamily: intermedium,
@@ -116,9 +116,9 @@ class Home extends StatelessWidget {
                           ),
                           Container(
                             margin: EdgeInsets.only(
-                                top: screenwidth * 0.028,
-                                left: screenwidth * 0.0666,
-                            right:screenwidth * 0.0666, ),
+                              top: screenwidth * 0.028,
+                              left: screenwidth * 0.0666,
+                              right:screenwidth * 0.0666, ),
                             child: SvgPicture.asset(
                               "assets/images/separation.svg",
                               width: screenwidth,
@@ -127,8 +127,8 @@ class Home extends StatelessWidget {
                           homecontroller.recentsessionslist(context),
                           homecontroller.streakSection(context),
                           homecontroller.exerciseHistorySection(context),
-                         SizedBox(height: screenwidth*0.06,)
-                         // homecontroller.history_home(context, homecontroller.staticlist)
+                          SizedBox(height: screenwidth*0.06,)
+                          // homecontroller.history_home(context, homecontroller.staticlist)
                         ],
                       ),
                     ),
