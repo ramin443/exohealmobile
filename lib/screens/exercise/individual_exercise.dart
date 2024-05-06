@@ -94,6 +94,7 @@ class IndividualExercise extends StatelessWidget {
                             fontSize: screenwidth*0.0313
                         ),):
                         Row(
+                          mainAxisAlignment:MainAxisAlignment.center,
                           children: [
                             Text(
 
