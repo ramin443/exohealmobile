@@ -1,4 +1,4 @@
-# exohealandroid
+# Exoheal Mobile App
 
 This is the mobile app that supplements the Exoheal robotic exoskeleton device used for hand paralysis recovery. Patients are able to connect to the device via an HC-05 BT module mounted on the exoskeleton. Additionally, patients get exercise recommendations based on their recovery progress over time. 
 
