@@ -481,9 +481,9 @@ class MainBTController extends GetxController{
   }
 
   List<ExerciseModel> exercises=[
-    ExerciseModel("", "Finger Tip Exercise", "_description", "_duration"),
-    ExerciseModel("", "Haptic Exercise Tip", "_description", "_duration"),
-    ExerciseModel("", "Mirror Therapy", "_description", "_duration"),
+    ExerciseModel("", "Finger Tip Exercise", "_description", "_duration",'a'),
+    ExerciseModel("", "Haptic Exercise Tip", "_description", "_duration",'a'),
+    ExerciseModel("", "Mirror Therapy", "_description", "_duration",'a'),
 
   ];
   void setscanningtrue() {
