@@ -29,13 +29,13 @@ void main() async{
 
   await remoteConfig.setConfigSettings(RemoteConfigSettings(
     fetchTimeout: const Duration(minutes: 1),
-    minimumFetchInterval: const Duration(hours: 1),
+    minimumFetchInterval: const Duration(seconds: 1),
   ));
 
   remoteConfig.fetchAndActivate();
 
   await remoteConfig.setDefaults(const {
-    "Exercises": '{}',
+    "Exercises": '{drffg}',
 
   });
 }

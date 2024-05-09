@@ -223,13 +223,13 @@ class FullLapController extends GetxController {
   bool timerstarted = false;
   List<ExerciseModel> staticexerciselist = [
     ExerciseModel("exohealgreen", "Finger Tip Exercise",
-        "Make sure you have bluetooth on your device turned on", "8 min"),
+        "Make sure you have bluetooth on your device turned on", "8 min",'a'),
     ExerciseModel("exohealgreen", "Haptic Exercise Exercise",
-        "Make sure you have bluetooth on your device turned on", "8 min"),
+        "Make sure you have bluetooth on your device turned on", "8 min",'b'),
     ExerciseModel("exohealgreen", "Mirror Therapy",
-        "Make sure you have bluetooth on your device turned on", "8 min"),
+        "Make sure you have bluetooth on your device turned on", "8 min",'c'),
     ExerciseModel("exohealgreen", "Grabbing Exercise",
-        "Make sure you have bluetooth on your device turned on", "8 min"),
+        "Make sure you have bluetooth on your device turned on", "8 min",'d'),
   ];
   bool countDown = true;
 

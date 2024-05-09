@@ -1,9 +1,11 @@
 import 'dart:convert';
+import 'dart:math';
 import 'dart:typed_data';
 import 'package:exohealandroid/getxcontrollers/mainBTController.dart';
 import 'package:exohealandroid/screens/pairing/mainpair.dart';
 import 'package:feather_icons/feather_icons.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -12,6 +14,7 @@ import 'package:intl/intl.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 
 import '../constants/color_constants.dart';
+import '../constants/exercise_constants.dart';
 import '../constants/fontconstants.dart';
 import '../datamodels/ExerciseModel.dart';
 import '../datamodels/HistoryModel.dart';
@@ -24,16 +27,25 @@ final MainBTController mainBTController = Get.put(MainBTController());
 final BaseController baseController = Get.put(BaseController());
 class HomeController extends GetxController{
   // FlutterBlue flutterBlue = FlutterBlue.instance;
-  String _data = '';
+  final remoteConfig = FirebaseRemoteConfig.instance;
+  String exercisesjson='';
   bool loading=false;
   bool _scanning = false;
   bool showmessagebox=false;
   List<ExerciseModel> exercises=[
-    ExerciseModel("", "Finger Tip Exercise", "_description", "_duration"),
-    ExerciseModel("", "Haptic Exercise Tip", "_description", "_duration"),
-    ExerciseModel("", "Mirror Therapy", "_description", "_duration"),
+    ExerciseModel("", "Finger Tip Exercise", "_description", "_duration",'a'),
+    ExerciseModel("", "Haptic Exercise Tip", "_description", "_duration",'b'),
+    ExerciseModel("", "Mirror Therapy", "_description", "_duration",'c'),
 
   ];
+  List<ExerciseModel> aiSuggestedExercises=[
+    ExerciseModel("", "Finger Tip Exercise", "_description", "_duration",'a'),
+    ExerciseModel("", "Haptic Exercise Tip", "_description", "_duration",'b'),
+    ExerciseModel("", "Mirror Therapy", "_description", "_duration",'c'),
+
+  ];
+  List<ExerciseModel> fetchedAllExercises=allexercises;
+
   setmessageboxtrue(){
     showmessagebox=true;
     update();
@@ -45,13 +57,13 @@ class HomeController extends GetxController{
 
   List<ExerciseModel> staticexerciselist=[
     ExerciseModel("exohealgreen", "Finger Tip Exercise",
-        "Make sure you have bluetooth on your device turned on", "8 min"),
+        "Make sure you have bluetooth on your device turned on", "8 min",'a'),
     ExerciseModel("exohealgreen", "Haptic Exercise Exercise",
-        "Make sure you have bluetooth on your device turned on", "8 min"),
+        "Make sure you have bluetooth on your device turned on", "8 min",'a'),
     ExerciseModel("exohealgreen", "Mirror Therapy",
-        "Make sure you have bluetooth on your device turned on", "8 min"),
+        "Make sure you have bluetooth on your device turned on", "8 min",'a'),
     ExerciseModel("exohealgreen", "Grabbing Exercise",
-        "Make sure you have bluetooth on your device turned on", "8 min"),
+        "Make sure you have bluetooth on your device turned on", "8 min",'a'),
   ];
   Widget borderline(BuildContext context) {
     double screenwidth = MediaQuery.of(context).size.width;
@@ -62,6 +74,12 @@ class HomeController extends GetxController{
         color: Colors.grey[200],
       ),
     );
+  }
+  Future<void> getOnBoardingConfig() async {
+    await remoteConfig.activate();
+    exercisesjson = remoteConfig.getString("Exercises");
+    print("Display on boarding is set to $exercisesjson");
+
   }
   Widget drawer(BuildContext context){
     double screenwidth = MediaQuery.of(context).size.width;
@@ -468,7 +486,7 @@ class HomeController extends GetxController{
             Navigator.push(context, MaterialPageRoute(builder: (context)=>
                 IndividualExercise(exerciseModel:
                 ExerciseModel("exohealgreen", "Finger Tip Exercise",
-                    "Make sure you have bluetooth on your device turned on", "15 sec"),)));
+                    "Make sure you have bluetooth on your device turned on", "15 sec",'a'),)));
           },
           child: Container(
             width: screenwidth*0.616,
@@ -1054,9 +1072,9 @@ class HomeController extends GetxController{
               physics: const BouncingScrollPhysics(),
               scrollDirection: Axis.horizontal,
               shrinkWrap: true,
-              itemCount: exercises.length,
+              itemCount: aiSuggestedExercises.length,
               itemBuilder: (context,index){
-                return individualExercise(context, exercises[index],index);
+                return individualExercise(context, aiSuggestedExercises[index],index);
               }),
         ),
       ],
@@ -1361,5 +1379,28 @@ class HomeController extends GetxController{
         ],
       ),
     );
+  }
+  void getlatestAISuggestedExercises(){
+    aiSuggestedExercises=[];
+    aiSuggestedExercises=getRandomItems(allexercises, 4);
+    update();
+  }
+  List<ExerciseModel> getRandomItems<ExerciseModel>(List<ExerciseModel> list, int count) {
+    if (count >= list.length) {
+      return list;
+    }
+
+    Random random = Random();
+    List<int> indices = [];
+
+    while (indices.length < count) {
+      int randomIndex = random.nextInt(list.length);
+      if (!indices.contains(randomIndex)) {
+        indices.add(randomIndex);
+      }
+    }
+
+    List<ExerciseModel> randomItems = indices.map((index) => list[index]).toList();
+    return randomItems;
   }
 }

@@ -4,15 +4,17 @@ class ExerciseModel{
   String? _exercisetype;
   String? _description;
   String? _duration;
+  String? _activationstring;
 
 
-  ExerciseModel(this._image,this._exercisetype,this._description,this._duration);
+  ExerciseModel(this._image,this._exercisetype,this._description,this._duration,this._activationstring);
 
   int? get id => _id;
   String? get image => _image;
   String? get exercisetype => _exercisetype;
   String? get description => _description;
   String? get duration => _duration;
+  String? get activationstring => _activationstring;
 
   set image(String? newimage) {
     this._image = newimage;
@@ -26,6 +28,9 @@ class ExerciseModel{
   set duration(String? newduration) {
     this._duration = newduration;
   }
+  set activationstring(String? newactivationstring) {
+    this._activationstring = newactivationstring;
+  }
 
 
   Map<String, dynamic> toMap() {
@@ -37,6 +42,7 @@ class ExerciseModel{
     map['exercisetype'] = _exercisetype;
     map['description'] = _description;
     map['duration'] = _duration;
+    map['activationstring'] = _activationstring;
 
 
 
@@ -50,6 +56,8 @@ class ExerciseModel{
     this._exercisetype = map['exercisetype'];
     this._description = map['description'];
     this._duration = map['duration'];
+    this._activationstring = map['activationstring'];
+
 
   }
 

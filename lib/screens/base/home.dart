@@ -27,6 +27,8 @@ class Home extends StatelessWidget {
               initState: (v) {
                 mainbtcontroller.checkifNotConnectedthenConnect(mainbtcontroller.isExohealConnected);
                 //   homeController.setmessageboxfalse();
+                homeController.getOnBoardingConfig();
+                homeController.getlatestAISuggestedExercises();
               },
               init: HomeController(),
               builder: (homecontroller) {
