@@ -28,14 +28,14 @@ class Base extends StatelessWidget {
             //  height: 91,
             //  height: screenwidth*0.233,
             decoration: BoxDecoration(
-                boxShadow: [
+                boxShadow: const [
                   BoxShadow(
                       offset: Offset(0, -6),
                       color: Color(0x0000000D),
                       blurRadius: 25)
                 ],
                 color: exohealanotherbggrey,
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(15),
                   topRight: Radius.circular(15),
                 )),

@@ -38,7 +38,7 @@ class Home extends StatelessWidget {
                     backgroundColor: exohealdarkmodepagebg,
                     elevation: 0,
                     actions: [
-                      IconButton(
+                     /* IconButton(
                           onPressed: () {
                             print(mainbtcontroller.isConnected);
                             mainbtcontroller.connectManuallywithAddress(context);
@@ -47,11 +47,11 @@ class Home extends StatelessWidget {
                             //   homecontroller.tryazure();
                             // homecontroller.scanbluetoothdevices();
                           },
-                          icon: Icon(
+                          icon: const Icon(
                             CupertinoIcons.command,
                             size: 24,
                             color: Colors.white,
-                          ))
+                          ))*/
                     ],
                     leading: IconButton(
                         onPressed: () {
@@ -124,6 +124,7 @@ class Home extends StatelessWidget {
                               width: screenwidth,
                             ),
                           ),
+                          homecontroller.AIsuggestionsSection(context),
                           homecontroller.recentsessionslist(context),
                           homecontroller.streakSection(context),
                           homecontroller.exerciseHistorySection(context),

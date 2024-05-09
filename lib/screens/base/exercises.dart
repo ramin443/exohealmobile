@@ -64,6 +64,7 @@ class Exercises extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  exercisecontroller.AIexerciserow(context,exercisecontroller.staticexerciselist),
                   exercisecontroller.exerciserow(context,exercisecontroller.staticexerciselist),
                   exercisecontroller.progressrow(context),
                   FirebaseAuth.instance.currentUser!.email!=testuseremail?
