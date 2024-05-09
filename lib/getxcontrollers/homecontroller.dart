@@ -20,7 +20,7 @@ import '../screens/exercise/individual_exercise.dart';
 import '../screens/historyandprogress/history.dart';
 import '../screens/historyandprogress/progress.dart';
 import 'basecontroller.dart';
-
+final MainBTController mainBTController = Get.put(MainBTController());
 final BaseController baseController = Get.put(BaseController());
 class HomeController extends GetxController{
   // FlutterBlue flutterBlue = FlutterBlue.instance;
@@ -893,14 +893,12 @@ class HomeController extends GetxController{
                     fontSize: screenwidth*0.0401),
               ),
             ),
-            Container(
-              child: Text(
-                "Connect to your ExoHeal device and start exercising",
-                style: TextStyle(
-                    fontFamily: intermedium,
-                    color: Color(0xffA3A3A3),
-                    fontSize:screenwidth*0.0304),
-              ),
+            Text(
+              "Connect to your ExoHeal device and start exercising",
+              style: TextStyle(
+                  fontFamily: intermedium,
+                  color: const Color(0xffA3A3A3),
+                  fontSize:screenwidth*0.0304),
             ),
           ],
         ),
@@ -908,19 +906,7 @@ class HomeController extends GetxController{
     );
   }
 
-  /*
-  tryazure()async{
-    var storage=AzureStorage.parse("DefaultEndpointsProtocol=https;AccountName=exohealmobile;AccountKey=+h4pGQ2WYV/c8kR9+Bic+k8keWo4YmH6RONNk/0OFBhocAGMkKJ5sf/6/HOtctZ0FVxEBCEPTmsckznxeuBAoA==;EndpointSuffix=core.windows.net");
-  await storage.putBlob('/yourcontainer/yourfile.txt',
-      body: 'Hello, worlduoooo.');
-  }
-  getblob()async{
 
-    var storage=AzureStorage.parse("DefaultEndpointsProtocol=https;AccountName=exohealmobile;AccountKey=+h4pGQ2WYV/c8kR9+Bic+k8keWo4YmH6RONNk/0OFBhocAGMkKJ5sf/6/HOtctZ0FVxEBCEPTmsckznxeuBAoA==;EndpointSuffix=core.windows.net");
-    final a=await storage.getBlob('/yourcontainer/yourfile.txt',
-        );
-    Stream b=a.stream;
-    }*/
   Widget individualtopRow(
       {@required BuildContext? context, @required String? title, @required String? tapsection}){
     double screenwidth=MediaQuery.sizeOf(context!).width;
@@ -943,6 +929,7 @@ class HomeController extends GetxController{
           ),
           GestureDetector(
             onTap: (){
+
             },
             child: Container(
               child: Row(
@@ -975,16 +962,116 @@ class HomeController extends GetxController{
       ),
     );
   }
+  Widget individualtopRowAIsection(
+      {@required BuildContext? context}){
+    double screenwidth=MediaQuery.sizeOf(context!).width;
+    return  Container(
+      width: screenwidth,
+      margin: EdgeInsets.only(bottom: screenwidth*0.028,
+          top: screenwidth*0.066),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SizedBox(
+                width:  screenwidth*0.044),
+
+              Icon(FeatherIcons.terminal,
+                size:24,
+                color:exohealpurple),
+              Container(
+                margin:EdgeInsets.only(left: screenwidth*0.0213),
+                child: RichText(
+                    text:TextSpan(
+                      children: [
+                        TextSpan(
+                            text:"AI ",
+                            style: TextStyle(
+                              fontFamily: intersemibold,
+                              fontSize: screenwidth*0.044,
+                              color:exohealpurple,
+                            )),
+                        TextSpan(
+                          text:"suggested exercises",
+                          style: TextStyle(
+                              fontFamily: intersemibold,
+                              fontSize: screenwidth*0.044,
+                              color:Colors.white.withOpacity(0.9)),
+                        ),
+                      ],
+                    )
+
+                ),
+              ),
+            ],
+          ),
+
+          GestureDetector(
+            onTap: (){
+
+            },
+            child: Container(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Container(
+                    child: Text(
+                      "View All",
+                      style: TextStyle(
+                          fontFamily: intermedium,
+                          fontSize: screenwidth*0.0293,
+                          color:exoheallightgreen),
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(left: screenwidth*0.0166,
+                      right: screenwidth*0.035,
+                    ),
+                    child: Icon(
+                      CupertinoIcons.arrow_right,
+                      color:exohealgreen,
+                      size: screenwidth*0.0373,
+                    ),
+                  )
+                ],
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+  Widget AIsuggestionsSection(BuildContext context){
+    double screenwidth=MediaQuery.sizeOf(context).width;
+    return   Column(
+      children: [
+        individualtopRowAIsection(context: context,),
+        SizedBox(
+          height: screenwidth*0.315,
+          child: ListView.builder(
+              physics: const BouncingScrollPhysics(),
+              scrollDirection: Axis.horizontal,
+              shrinkWrap: true,
+              itemCount: exercises.length,
+              itemBuilder: (context,index){
+                return individualExercise(context, exercises[index],index);
+              }),
+        ),
+      ],
+    );
+  }
   Widget recentsessionslist(BuildContext context){
     double screenwidth=MediaQuery.sizeOf(context).width;
     return
       Column(
         children: [
           individualtopRow(context: context, title:  "Recent sessions", tapsection: "View All"),
-          Container(
+          SizedBox(
             height: screenwidth*0.315,
             child: ListView.builder(
-                physics: BouncingScrollPhysics(),
+                physics: const BouncingScrollPhysics(),
                 scrollDirection: Axis.horizontal,
                 shrinkWrap: true,
                 itemCount: exercises.length,
@@ -999,8 +1086,14 @@ class HomeController extends GetxController{
     double screenwidth=MediaQuery.sizeOf(context).width;
     return GestureDetector(
       onTap: (){
+        if(mainBTController.isExohealConnected){
+          Navigator.push(context, MaterialPageRoute(builder: (context)
+          =>IndividualExercise(exerciseModel: exerciseModel,)));
+        }else{
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>MainPair()));
+        }
 
-      },
+            },
       child: Container(
         width: screenwidth*0.56,
         height: screenwidth*0.315,

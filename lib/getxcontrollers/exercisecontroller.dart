@@ -13,8 +13,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import '../constants/color_constants.dart';
+import '../constants/exercise_constants.dart';
 import '../datamodels/ExerciseModel.dart';
-
+import '../screens/pairing/mainpair.dart';
+import 'mainBTController.dart';
+final MainBTController mainBTController = Get.put(MainBTController());
 final BaseController baseController = Get.put(BaseController());
 class ExerciseController extends GetxController{
   int currentscrollviewindex=0;
@@ -58,6 +61,204 @@ class ExerciseController extends GetxController{
       update();
     }
 
+  }
+
+  Widget AIexerciserow(BuildContext context, List<ExerciseModel> exerciselist){
+    double screenwidth = MediaQuery.of(context).size.width;
+    return     Container(
+      width: screenwidth,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          individualtopRowAIsection(context:context),
+          Container(
+            height: screenwidth*0.589,
+            margin: EdgeInsets.only(top: screenwidth*0.0106),
+            child: ListView.builder(
+                controller: exercisescrollviewcontroller,
+                //     shrinkWrap: true,
+                scrollDirection: Axis.horizontal,
+                physics: BouncingScrollPhysics(),
+                itemCount: exerciselist.length,
+                itemBuilder: (context,index){
+                  return Container(
+                    height: screenwidth*0.589,
+                    width: screenwidth*0.493,
+                    padding: EdgeInsets.symmetric(horizontal: screenwidth*0.032,
+                        vertical: screenwidth*0.0426),
+                    margin: EdgeInsets.only(left:index==0?screenwidth*0.052:
+                    0,right: screenwidth*0.0453
+                    ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(6)),
+                      color: exohealanotherbggrey,
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children:[
+                              Container(
+                                margin:EdgeInsets.only(top: 3),
+                                child: Text(
+                                  exerciselist[index].exercisetype.toString(),
+                                  style: TextStyle(
+                                      fontFamily: intermedium,
+                                      fontSize: screenwidth*0.0386,
+                                      color:Colors.white),
+                                ),
+                              ),
+                              Container(
+                                margin:EdgeInsets.only(top: screenwidth*0.024),
+                                child: Text(
+                                  exerciselist[index].description.toString(),
+                                  maxLines:2,
+                                  style: TextStyle(
+                                      fontFamily: intermedium,
+                                      fontSize: screenwidth*0.0293,
+                                      color:Colors.white70),
+                                ),
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(top: screenwidth*0.048),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+
+                                  children: [
+                                    Container(
+                                      child: Icon(FeatherIcons.clock,
+                                        size: 20,
+                                        color: Colors.white70,),
+                                    ),
+                                    Container(
+                                      margin:EdgeInsets.only(left: screenwidth*0.021),
+                                      child: Text(
+                                        exerciselist[index].duration.toString(),
+                                        style: TextStyle(
+                                            fontFamily: intermedium,
+                                            fontSize: screenwidth*0.0266,
+                                            color:Colors.white70),
+                                      ),
+                                    ),
+
+                                  ],
+                                ),
+                              )
+                            ]),
+                        GestureDetector(
+                          onTap: (){
+                            if(mainBTController.isExohealConnected){
+                              Navigator.push(context, MaterialPageRoute(builder: (context)
+                              =>IndividualExercise(exerciseModel: exerciselist[index],)));
+                            }else{
+                              Navigator.push(context, MaterialPageRoute(builder: (context)=>MainPair()));
+                            }
+
+                          },
+                          child: Container(
+                            width: screenwidth,
+                            height: screenwidth*0.0966,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.all(Radius.circular(24)),
+                                color: exoheallightgreen
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  margin:EdgeInsets.only(left: 10),
+                                  child: Icon(CupertinoIcons.arrow_right,
+                                    color: Colors.transparent,
+                                    size: 18,),
+                                ),
+                                Container(
+                                  //        margin:EdgeInsets.only(left: screenwidth*0.021),
+                                  child: Text(
+                                    "Start",
+                                    style: TextStyle(
+                                        fontFamily: intermedium,
+                                        fontSize: screenwidth*0.0343,
+                                        color:exohealdarkmodepagebg),
+                                  ),
+                                ),
+                                Container(
+                                  margin:EdgeInsets.only(right: 10),
+                                  child: Icon(CupertinoIcons.arrow_right,
+                                    color: exohealdarkmodepagebg,
+                                    size: 14,),
+                                ),
+                              ],
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  );
+                }),
+          ),
+          Container(
+            margin: EdgeInsets.only(top: screenwidth*0.0373,bottom: screenwidth*0.0533),
+            width: screenwidth,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                AnimatedContainer(duration: Duration(milliseconds: 150),
+                  //             height: 6,width: 6,
+                  height: screenwidth*0.016,width: screenwidth*0.016,
+                  margin: EdgeInsets.only(
+                    //            right: 5
+                      right: screenwidth*0.0133
+                  ),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: currentscrollviewindex==0?Color(0xffDDDDDD):darkgrey,
+                  ),
+                ),
+                AnimatedContainer(duration: Duration(milliseconds: 150),
+                  //               height: 6,width: 6,
+                  height: screenwidth*0.016,width: screenwidth*0.016,
+                  margin: EdgeInsets.only(right:  screenwidth*0.0133),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color:currentscrollviewindex==1?Color(0xffDDDDDD):darkgrey,
+                  ),
+                ),
+                AnimatedContainer(duration: Duration(milliseconds: 150),
+                  //                height: 6,width: 6,
+                  height: screenwidth*0.016,width: screenwidth*0.016,
+                  margin: EdgeInsets.only(right:  screenwidth*0.0133),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color:currentscrollviewindex==2?Color(0xffDDDDDD):darkgrey,
+                  ),
+                ),
+                AnimatedContainer(duration: Duration(milliseconds: 150),
+//                  height: 6,width: 6,
+                  height: screenwidth*0.016,width: screenwidth*0.016,
+                  margin: EdgeInsets.only(right:  screenwidth*0.0133),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: currentscrollviewindex==3?Color(0xffDDDDDD):darkgrey,
+                  ),
+                ),
+
+              ],
+            ),
+          ),
+
+          Container(
+            margin: EdgeInsets.symmetric(vertical: screenwidth*0.048,
+                horizontal: screenwidth*0.0666),
+            child: SvgPicture.asset("assets/images/separation.svg",
+              width: screenwidth,),
+          ),
+        ],
+      ),
+    );
   }
 
   Widget exerciserow(BuildContext context, List<ExerciseModel> exerciselist){
@@ -118,11 +319,10 @@ class ExerciseController extends GetxController{
             height: screenwidth*0.589,
             margin: EdgeInsets.only(top: screenwidth*0.0506),
             child: ListView.builder(
-              controller: exercisescrollviewcontroller,
         //     shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
                 physics: BouncingScrollPhysics(),
-                itemCount: exerciselist.length,
+                itemCount: allexercises.length,
                 itemBuilder: (context,index){
               return Container(
                 height: screenwidth*0.589,
@@ -147,7 +347,7 @@ class ExerciseController extends GetxController{
                     Container(
                       margin:EdgeInsets.only(top: 3),
                       child: Text(
-                        exerciselist[index].exercisetype.toString(),
+                        allexercises[index].exercisetype.toString(),
                         style: TextStyle(
                             fontFamily: intermedium,
                             fontSize: screenwidth*0.0386,
@@ -157,7 +357,8 @@ class ExerciseController extends GetxController{
                     Container(
                       margin:EdgeInsets.only(top: screenwidth*0.024),
                       child: Text(
-                        exerciselist[index].description.toString(),
+                        allexercises[index].description.toString(),
+                        maxLines:2,
                         style: TextStyle(
                             fontFamily: intermedium,
                             fontSize: screenwidth*0.0293,
@@ -178,7 +379,7 @@ class ExerciseController extends GetxController{
                       Container(
                         margin:EdgeInsets.only(left: screenwidth*0.021),
                         child: Text(
-                          exerciselist[index].duration.toString(),
+                          allexercises[index].duration.toString(),
                           style: TextStyle(
                               fontFamily: intermedium,
                               fontSize: screenwidth*0.0266,
@@ -192,8 +393,13 @@ class ExerciseController extends GetxController{
                 ]),
                     GestureDetector(
                       onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context)
-                        =>IndividualExercise(exerciseModel: exerciselist[index],)));
+                        if(mainBTController.isExohealConnected){
+                          Navigator.push(context, MaterialPageRoute(builder: (context)
+                          =>IndividualExercise(exerciseModel: allexercises[index],)));
+                        }else{
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>MainPair()));
+                        }
+
                       },
                       child: Container(
                         width: screenwidth,
@@ -592,6 +798,87 @@ class ExerciseController extends GetxController{
                   ),
                 ),
               ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+  Widget individualtopRowAIsection(
+      {@required BuildContext? context}){
+    double screenwidth=MediaQuery.sizeOf(context!).width;
+    return  Container(
+      width: screenwidth,
+      margin: EdgeInsets.only(bottom: screenwidth*0.028,
+          top: screenwidth*0.066),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SizedBox(
+                  width:  screenwidth*0.044),
+
+              Icon(FeatherIcons.terminal,
+                  size:24,
+                  color:exohealpurple),
+              Container(
+                margin:EdgeInsets.only(left: screenwidth*0.0213),
+                child: RichText(
+                    text:TextSpan(
+                      children: [
+                        TextSpan(
+                            text:"AI ",
+                            style: TextStyle(
+                              fontFamily: intersemibold,
+                              fontSize: screenwidth*0.044,
+                              color:exohealpurple,
+                            )),
+                        TextSpan(
+                          text:"suggested exercises",
+                          style: TextStyle(
+                              fontFamily: intersemibold,
+                              fontSize: screenwidth*0.044,
+                              color:Colors.white.withOpacity(0.9)),
+                        ),
+                      ],
+                    )
+
+                ),
+              ),
+            ],
+          ),
+
+          GestureDetector(
+            onTap: (){
+
+            },
+            child: Container(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Container(
+                    child: Text(
+                      "View All",
+                      style: TextStyle(
+                          fontFamily: intermedium,
+                          fontSize: screenwidth*0.0293,
+                          color:exoheallightgreen),
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(left: screenwidth*0.0166,
+                      right: screenwidth*0.035,
+                    ),
+                    child: Icon(
+                      CupertinoIcons.arrow_right,
+                      color:exohealgreen,
+                      size: screenwidth*0.0373,
+                    ),
+                  )
+                ],
+              ),
             ),
           )
         ],
