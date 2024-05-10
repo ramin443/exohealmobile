@@ -1,12 +1,15 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:exohealandroid/constants/color_constants.dart';
 import 'package:exohealandroid/getxcontrollers/mainBTController.dart';
 import 'package:feather_icons/feather_icons.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import '../../constants/fontconstants.dart';
+import '../../constants/progress_data_constants.dart';
 import '../../getxcontrollers/homecontroller.dart';
 
 class Home extends StatelessWidget {
@@ -42,12 +45,15 @@ class Home extends StatelessWidget {
                     actions: [
                      /* IconButton(
                           onPressed: () {
-                            print(mainbtcontroller.isConnected);
-                            mainbtcontroller.connectManuallywithAddress(context);
-//                      Connect manually here
-                            //homecontroller.listendevices();
-                            //   homecontroller.tryazure();
-                            // homecontroller.scanbluetoothdevices();
+                            for(var a in progressDataMap){
+                              FirebaseFirestore.instance.collection("UserProgress")
+                                  .doc(FirebaseAuth.instance.currentUser!.uid)
+                                  .update(
+                                  {    'progressData': FieldValue.arrayUnion([a]),
+                                  }
+                              );
+                            }
+
                           },
                           icon: const Icon(
                             CupertinoIcons.command,
@@ -127,7 +133,7 @@ class Home extends StatelessWidget {
                             ),
                           ),
                           homecontroller.AIsuggestionsSection(context),
-                          homecontroller.recentsessionslist(context),
+                       //   homecontroller.recentsessionslist(context),
                           homecontroller.streakSection(context),
                           homecontroller.exerciseHistorySection(context),
                           SizedBox(height: screenwidth*0.06,)

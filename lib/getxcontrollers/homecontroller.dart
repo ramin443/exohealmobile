@@ -98,7 +98,7 @@ class HomeController extends GetxController{
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
+                Expanded(
                   child: Text('ExoHeal',
                     style: TextStyle(
                         fontFamily: proximanovaregular,
